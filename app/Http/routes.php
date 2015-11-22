@@ -11,6 +11,12 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->welcome();
+$app->group(['prefix' => 'api'], function ($app) {
+    $app->group(['prefix' => 'articles'], function ($app) {
+        $app->get('/', 'ArticlesController@all');
+        $app->get('/{slug}', 'ArticlesController@get');
+        $app->post('/', 'ArticlesController@create');
+    });
+
+
 });
