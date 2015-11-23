@@ -18,5 +18,19 @@ $app->group(['prefix' => 'api'], function ($app) {
         $app->post('/', 'ArticlesController@create');
     });
 
+    $app->group(['prefix' => 'tags'], function ($app) {
+        $app->get('/{slug}', 'TagsController@get');
+    });
 
+    $app->group(['prefix' => 'members'], function ($app) {
+        $app->get('/', 'MembersController@all');
+        $app->get('/{slug}', 'MembersController@get');
+        $app->post('/', 'MembersController@create');
+    });
+
+    $app->group(['prefix' => 'commands'], function ($app) {
+        $app->get('/', 'CommandsController@all');
+        $app->get('/{slug}', 'CommandsController@get');
+        $app->post('/', 'CommandsController@create');
+    });
 });

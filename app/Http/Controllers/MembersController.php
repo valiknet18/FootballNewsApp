@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Member;
 use App\Tag;
 use Illuminate\Support\Facades\Request;
 
@@ -10,14 +11,14 @@ class MembersController extends Controller
 {
     public function all(Request $request)
     {
-        $articles = Article::paginate(5);
+        $articles = Member::paginate(5);
 
         return response()->json($articles);
     }
 
     public function get($slug)
     {
-        $article = Article::findBySlug($slug);
+        $article = Member::findBySlug($slug);
 
         if (!$article) {
             return response()->json(null, 404);
@@ -28,25 +29,25 @@ class MembersController extends Controller
 
     public function create(Request $request)
     {
-        $article = Article::create([
-            'title' => $request->get('title'),
-            'slug' => str_slug($request->get('title')),
+        $filename = '';
+
+        if ($request->hasFile('photo')) {
+            $filename = md5(uniqid()) . $request->file('photo')->guessExtension();
+
+            $request->file('photo')->move("/uploads", $filename);
+        }
+
+        $article = Member::create([
+            'full_name' => $request->get('full_name'),
+            'slug' => str_slug($request->get('full_name')),
+            'role' => $request->get('role'),
+            'photo' => $filename,
+            'birthday' => $request->get('birthday'),
             'short_description' => $request->get('short_description'),
-            'description' => $request->get('description')
+            'description' => $request->get('description'),
+            'command_id' => $request->get('command_id')
         ]);
 
-        foreach ($request->get('tags') as $tagName) {
-            $tag = Tag::findByName($tagName);
-
-            if (!$tag) {
-                $tag = Tag::create([
-                    'title' => $tagName,
-                    'slug' => str_slug($tagName)
-                ]);
-            }
-
-            $article->tags()->save($tag);
-        }
 
         return response()->json($article, 201);
     }
