@@ -10,15 +10,21 @@ class Member extends Model
         'full_name',
         'photo',
         'role',
-        'slug',
         'birthday',
         'short_description',
         'description',
         'command_id'
     ];
 
+    public $timestamps = false;
+
     public function command()
     {
         return $this->belongsTo(Command::class);
+    }
+
+    public function getPhotoAttribute($photo)
+    {
+        return "http://football.local/uploads/" . $photo;
     }
 }

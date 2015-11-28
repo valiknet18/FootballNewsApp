@@ -17,7 +17,6 @@ class CreateMembersTable extends Migration
             $table->string('full_name');
             $table->string('photo')->logo();
             $table->string('role');
-            $table->string('slug');
             $table->date('birthday');
             $table->text('short_description');
             $table->text('description');

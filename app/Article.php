@@ -8,13 +8,12 @@ class Article extends Model
 {
     public $fillable = [
         'title',
-        'slug',
         'short_description',
         'description'
     ];
 
     public function tags() {
-        return $this->hasManyThrough(Tag::class, 'article_tag');
+        return $this->belongsToMany(Tag::class, 'article_tag');
     }
 
     public function scopeFindBySlug($query, $slug)

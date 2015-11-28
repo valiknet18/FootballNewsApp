@@ -15,7 +15,6 @@ class CreateCommandsTable extends Migration
         Schema::create('commands', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->string('slug');
             $table->text('short_description');
             $table->text('description');
             $table->string('logo')->nullable();

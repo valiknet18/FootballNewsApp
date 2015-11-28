@@ -11,26 +11,20 @@
 |
 */
 
+
+
 $app->group(['prefix' => 'api'], function ($app) {
-    $app->group(['prefix' => 'articles'], function ($app) {
-        $app->get('/', 'ArticlesController@all');
-        $app->get('/{slug}', 'ArticlesController@get');
-        $app->post('/', 'ArticlesController@create');
-    });
+    $app->post('/articles', 'App\Http\Controllers\ArticlesController@create');
+    $app->get('/articles', 'App\Http\Controllers\ArticlesController@all');
+    $app->get('/articles/{id}', 'App\Http\Controllers\ArticlesController@get');
 
-    $app->group(['prefix' => 'tags'], function ($app) {
-        $app->get('/{slug}', 'TagsController@get');
-    });
+    $app->get('/tags/{id}', 'App\Http\Controllers\TagsController@get');
 
-    $app->group(['prefix' => 'members'], function ($app) {
-        $app->get('/', 'MembersController@all');
-        $app->get('/{slug}', 'MembersController@get');
-        $app->post('/', 'MembersController@create');
-    });
+    $app->get('/members', 'App\Http\Controllers\MembersController@all');
+    $app->get('/members/{id}', 'App\Http\Controllers\MembersController@get');
+    $app->post('/members', 'App\Http\Controllers\MembersController@create');
 
-    $app->group(['prefix' => 'commands'], function ($app) {
-        $app->get('/', 'CommandsController@all');
-        $app->get('/{slug}', 'CommandsController@get');
-        $app->post('/', 'CommandsController@create');
-    });
+    $app->get('/commands', 'App\Http\Controllers\CommandsController@all');
+    $app->get('/commands/{id}', 'App\Http\Controllers\CommandsController@get');
+    $app->post('/commands', 'App\Http\Controllers\CommandsController@create');
 });

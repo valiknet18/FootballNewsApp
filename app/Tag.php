@@ -8,16 +8,17 @@ class Tag extends Model
 {
     public $fillable = [
         'title',
-        'slug'
     ];
+
+    public $timestamps = false;
 
     public function articles()
     {
-        return $this->hasManyThrough(Article::class, 'article_tag');
+        return $this->belongsToMany(Article::class, 'article_tag');
     }
 
     public function scopeFindByName($query, $name)
     {
-        return $query->where('title', $name)->first();
+        return $query->where('title', $name);
     }
 }

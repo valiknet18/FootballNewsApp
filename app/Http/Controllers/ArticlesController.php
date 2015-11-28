@@ -4,20 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Tag;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
 {
     public function all(Request $request)
     {
-        $articles = Article::paginate(5);
+        $articles = Article::orderBy('id', 'DESC')->with('tags')->paginate(5);
 
         return response()->json($articles);
     }
 
-    public function get($slug)
+    public function get($id)
     {
-        $article = Article::findBySlug($slug);
+        $article = Article::with('tags')->find($id);
 
         if (!$article) {
             return response()->json(null, 404);
@@ -30,22 +30,20 @@ class ArticlesController extends Controller
     {
         $article = Article::create([
             'title' => $request->get('title'),
-            'slug' => str_slug($request->get('title')),
             'short_description' => $request->get('short_description'),
             'description' => $request->get('description')
         ]);
 
         foreach ($request->get('tags') as $tagName) {
-            $tag = Tag::findByName($tagName);
+            $tag = Tag::findByName($tagName)->first();
 
             if (!$tag) {
                 $tag = Tag::create([
-                    'title' => $tagName,
-                    'slug' => str_slug($tagName)
+                    'title' => $tagName
                 ]);
             }
 
-            $article->tags()->save($tag);
+            $article->tags()->attach($tag);
         }
 
         return response()->json($article, 201);

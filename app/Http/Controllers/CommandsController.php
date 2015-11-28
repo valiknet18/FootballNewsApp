@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Command;
 use App\Tag;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class CommandsController extends Controller
 {
@@ -16,9 +16,9 @@ class CommandsController extends Controller
         return response()->json($commands);
     }
 
-    public function get($slug)
+    public function get($id)
     {
-        $command = Command::findBySlug($slug);
+        $command = Command::with('members')->find($id);
 
         if (!$command) {
             return response()->json(null, 404);
@@ -32,14 +32,13 @@ class CommandsController extends Controller
         $filename = '';
 
         if ($request->hasFile('logo')) {
-            $filename = md5(uniqid()) . $request->file('logo')->guessExtension();
+            $filename = md5('logo' . uniqid()) . '.' . $request->file('logo')->guessExtension();
 
-            $request->file('logo')->move("/uploads", $filename);
+            $request->file('logo')->move(__DIR__ . "/../../../public/uploads", $filename);
         }
 
         $command = Command::create([
             'title' => $request->get('title'),
-            'slug' => str_slug($request->get('title')),
             'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
             'logo' => $filename,

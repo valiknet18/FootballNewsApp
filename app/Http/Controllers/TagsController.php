@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Request;
 
 class TagsController extends Controller
 {
-    public function get($slug)
+    public function get($id)
     {
-        $article = Tag::findBySlug($slug);
+        $article = Tag::with('articles.tags')->find($id);
 
         if (!$article) {
             return response()->json(null, 404);
