@@ -1,0 +1,13 @@
+<md-card flex-gt-sm="90" flex-gt-md="80">
+    <md-card-content>
+        <md-toolbar class="md-whiteframe-z1">
+            <h1 class="md-toolbar-tools">{{ article.title }}</h1>
+        </md-toolbar>
+        <md-content>
+            <p>{{ article.description }}</p>
+            <md-chips ng-model="article.tags" readonly="true">
+                <md-chip-template ng-click="go('tag', $chip.id)">{{ $chip.title }}</md-chip-template>
+            </md-chips>
+        </md-content>
+    </md-card-content>
+</md-card>

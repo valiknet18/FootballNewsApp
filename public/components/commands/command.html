@@ -1,0 +1,32 @@
+<md-card flex-gt-sm="90" flex-gt-md="80">
+    <md-card-content>
+        <md-toolbar class="md-whiteframe-z1">
+            <h1 class="md-toolbar-tools">Команда: {{ command.title }}</h1>
+        </md-toolbar>
+        <md-content class="command">
+            <div class="left">
+                <img ng-src="{{ command.logo }}" class="left" />
+            </div>
+
+            <div class="text-command">
+                <p>{{ command.description }}</p>
+            </div>
+
+            <div class="clearfix">
+
+            </div>
+
+            <md-list>
+                <md-subheader class="md-no-sticky">Учасники</md-subheader>
+                <md-list-item class="md-3-line" ng-repeat="member in command.members">
+                    <img ng-src="{{member.photo}}" class="md-avatar" alt="{{member.full_name}}" />
+                    <div class="md-list-item-text" layout="column">
+                        <h3 ng-click="go('member', member.id)" class="link">{{ member.full_name }}</h3>
+                        <h4>Роль: {{ member.role }}</h4>
+                        <p>{{ member.short_description }}</p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </md-card-content>
+</md-card>

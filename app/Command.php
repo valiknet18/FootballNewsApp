@@ -22,6 +22,6 @@ class Command extends Model
 
     public function getLogoAttribute($logo)
     {
-        return "http://football.local/uploads/" . $logo;
+        return "/uploads/" . $logo;
     }
 }

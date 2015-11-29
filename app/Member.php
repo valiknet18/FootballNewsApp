@@ -25,6 +25,6 @@ class Member extends Model
 
     public function getPhotoAttribute($photo)
     {
-        return "http://football.local/uploads/" . $photo;
+        return "/uploads/" . $photo;
     }
 }

@@ -11,7 +11,7 @@
 |
 */
 
-
+$app->get('/', 'IndexController@index');
 
 $app->group(['prefix' => 'api'], function ($app) {
     $app->post('/articles', 'App\Http\Controllers\ArticlesController@create');
