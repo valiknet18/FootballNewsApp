@@ -1,50 +1,51 @@
 <md-dialog aria-label="Футболіст" flex="80">
-    <md-content class="md-padding">
-        <form name="userForm">
-            <div layout layout-sm="column">
-                <div class="button" ngf-select ng-model="member.photo" name="file" ngf-pattern="'image/*'"
-                     accept="image/*" ngf-max-size="20MB" ngf-min-height="100"
-                     ngf-resize="{width: 100, height: 100}">Select</div>
-            </div>
-            <div layout layout-sm="column">
-                <md-input-container flex>
-                    <label>Повне ім’я гравця</label>
-                    <input ng-model="member.full_name">
-                </md-input-container>
-            </div>
+  <md-content class="md-padding">
+    <form name="userForm">
+      <div layout layout-sm="column">
+        <div class="button" ngf-select ng-model="member.photo" name="file" ngf-pattern="'image/*'"
+             accept="image/*" ngf-max-size="20MB" ngf-min-height="100"
+             ngf-resize="{width: 100, height: 100}">Select
+        </div>
+      </div>
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label>Повне ім’я гравця</label>
+          <input ng-model="member.full_name">
+        </md-input-container>
+      </div>
 
-            <md-input-container flex>
-                <label>Роль</label>
-                <input ng-model="member.role" />
-            </md-input-container>
+      <md-input-container flex>
+        <label>Роль</label>
+        <input ng-model="member.role"/>
+      </md-input-container>
 
-            <md-input-container flex>
-                <label>День народження</label>
-                <input ng-model="member.birthday" />
-            </md-input-container>
+      <md-input-container flex>
+        <label>День народження</label>
+        <input ng-model="member.birthday"/>
+      </md-input-container>
 
-            <md-input-container flex>
-                <label>Короткий опис</label>
-                <input ng-model="member.short_description" />
-            </md-input-container>
+      <md-input-container flex>
+        <label>Короткий опис</label>
+        <input ng-model="member.short_description"/>
+      </md-input-container>
 
-            <md-input-container flex>
-                <label>Опис</label>
-                <input ng-model="member.description" />
-            </md-input-container>
+      <md-input-container flex>
+        <label>Опис</label>
+        <input ng-model="member.description"/>
+      </md-input-container>
 
-            <md-input-container flex>
-                <label>Команда</label>
-                <md-select ng-model="member.command_id">
-                    <md-option ng-repeat="command in commands" value="{{ command.id }}">
-                        {{ command.title }}
-                    </md-option>
-                </md-select>
-            </md-input-container>
-        </form>
-    </md-content>
-    <div class="md-actions" layout="row"><span flex></span>
-        <md-button ng-click="cancel()"> Cancel</md-button>
-        <md-button ng-click="answer(member)" class="md-primary">Save</md-button>
-    </div>
+      <md-input-container flex>
+        <label>Команда</label>
+        <md-select ng-model="member.command_id">
+          <md-option ng-repeat="command in commands" value="{{ command.id }}">
+            {{ command.title }}
+          </md-option>
+        </md-select>
+      </md-input-container>
+    </form>
+  </md-content>
+  <div class="md-actions" layout="row"><span flex></span>
+    <md-button ng-click="cancel()"> Cancel</md-button>
+    <md-button ng-click="answer(member)" class="md-primary">Save</md-button>
+  </div>
 </md-dialog>

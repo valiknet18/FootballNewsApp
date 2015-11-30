@@ -1,35 +1,30 @@
-<md-card flex-gt-sm="90" flex-gt-md="80">
-    <md-card-content>
-        <md-toolbar class="md-whiteframe-z1">
-            <h1 class="md-toolbar-tools">Новини</h1>
-        </md-toolbar>
-        <md-list>
-            <md-list-item ng-repeat="article in articles">
-                <md-item-content>
-                    <div class="md-tile-content">
-                        <h3 ng-click="go('article', article.id)" class="link">
-                            {{ article.title }}
-                        </h3>
-                        <p>
-                            {{ article.short_description }}
-                        </p>
-                        <md-chips ng-model="article.tags" readonly="true">
-                            <md-chip-template ng-click="go('tag', $chip.id)">{{ $chip.title }}</md-chip-template>
-                        </md-chips>
-                    </div>
-                </md-item-content>
-
-                <md-divider md-inset hide-sm></md-divider>
-            </md-list-item>
-        </md-list>
-    </md-card-content>
-</md-card>
+<md-whiteframe class="md-whiteframe-1dp"
+               layout="column" layout-align="center center"
+               layout-margin layout-padding
+               ng-repeat="article in articles"
+               ng-style="{ 'background': article.color }">
+  <div>
+    <h3 ng-click="go('article', article.id)" class="link">
+      {{ article.title }}
+    </h3>
+  </div>
+  <div layout-fill>
+    <p>
+      {{ article.short_description }}
+    </p>
+  </div>
+  <div>
+    <md-chips ng-model="article.tags" readonly="true">
+      <md-chip-template ng-click="go('tag', $chip.id)">{{ $chip.title }}</md-chip-template>
+    </md-chips>
+  </div>
+</md-whiteframe>
 
 <div class="float-btn">
-    <md-button class="md-fab" aria-label="Добавить" ng-click="showModal($event)" layout-fill>
-        <md-tooltip>
-            Добавить
-        </md-tooltip>
-        <ng-md-icon icon="add"></ng-md-icon>
-    </md-button>
+  <md-button class="md-fab" aria-label="" ng-click="showModal($event)" layout-fill>
+    <md-tooltip>
+      Сворити
+    </md-tooltip>
+    <ng-md-icon icon="add"></ng-md-icon>
+  </md-button>
 </div>

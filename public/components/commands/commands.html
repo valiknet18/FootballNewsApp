@@ -1,29 +1,30 @@
-<md-card flex-gt-sm="90" flex-gt-md="80">
-    <md-card-content>
-        <md-toolbar class="md-whiteframe-z1">
-            <h1 class="md-toolbar-tools">Команди</h1>
-        </md-toolbar>
-        <md-list>
-            <md-list-item ng-repeat="command in commands" class="md-3-line">
-                <img ng-src="{{ command.logo }}" class="md-avatar" />
-
-                <div class="md-list-item-text" layout="column">
-                    <h3 ng-click="go('command', command.id)" class="link">{{ command.title }}</h3>
-                    <p>
-                        {{ command.short_description }}
-                    </p>
-                </div>
-                <md-divider md-inset hide-sm></md-divider>
-            </md-list-item>
-        </md-list>
-    </md-card-content>
-</md-card>
+<md-whiteframe class="md-whiteframe-1dp"
+               layout="column" layout-align="center center"
+               layout-margin layout-padding
+               ng-repeat="command in commands"
+               ng-style="{ 'background': command.color }"
+               ng-click="go('command', command.id)">
+  <div>
+    <h3 ng-click="go('command', command.id)" class="link">
+      {{ article.title }}
+    </h3>
+  </div>
+  <div>
+    <img ng-src="{{ command.logo }}" class="md-avatar" ng-click="go('command', command.id)"/>
+  </div>
+  <div class="md-list-item-text" layout="column">
+    <h3 ng-click="go('command', command.id)" class="link">{{ command.title }}</h3>
+    <p>
+      {{ command.short_description }}
+    </p>
+  </div>
+</md-whiteframe>
 
 <div class="float-btn">
-    <md-button class="md-fab" aria-label="Добавить" ng-click="showModal($event)" layout-fill>
-        <md-tooltip>
-            Добавить
-        </md-tooltip>
-        <ng-md-icon icon="add"></ng-md-icon>
-    </md-button>
+  <md-button class="md-fab" aria-label="Добавить" ng-click="showModal($event)" layout-fill>
+    <md-tooltip>
+      Добавить
+    </md-tooltip>
+    <ng-md-icon icon="add"></ng-md-icon>
+  </md-button>
 </div>
