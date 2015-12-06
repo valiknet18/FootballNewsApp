@@ -1,0 +1,19 @@
+<md-bottom-sheet class="md-list md-has-header" ng-cloak>
+  <md-subheader layout-align="center center">
+    Навігація
+  </md-subheader>
+  <md-list>
+    <md-list-item class="md-1-line"
+                  ng-repeat="item in menu.menu">
+      <md-button
+          ng-click="menuMobile.menuMobile($index)"
+          class="md-list-item-content" layout-fill>
+        <a href="" ui-sref="{{ item.url }}">
+          <span class="md-inline-list-icon-label">
+            {{ item.name }}
+          </span>
+        </a>
+      </md-button>
+    </md-list-item>
+  </md-list>
+</md-bottom-sheet>

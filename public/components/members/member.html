@@ -1,25 +1,31 @@
-<md-card flex-gt-sm="90" flex-gt-md="80">
-    <md-card-content>
-        <md-toolbar class="md-whiteframe-z1">
-            <h1 class="md-toolbar-tools">{{ member.full_name }}</h1>
-        </md-toolbar>
-        <md-content class="member">
-            <div class="left">
-                <img ng-src="{{ member.photo }}"  />
-            </div>
+<md-whiteframe class="md-whiteframe-1dp"
+               layout="column" layout-align="center center"
+               layout-margin layout-padding
+               ng-style="{ 'background': member.color }">
+  <div>
+    <h1 class="md-toolbar-tools">{{ member.full_name }}</h1>
+  </div>
+  <div class="left">
+    <img ng-src="{{ command.logo }}" class="left"/>
+  </div>
+  <md-content class="member">
+    <div class="left">
+      <img ng-src="{{ member.photo }}"/>
+    </div>
 
-            <div class="text-member">
-                <p>
-                    <span class="md-subhead link" ng-click="go('command', member.command.id)">Команда: {{ member.command.title }}</span>
-                </p>
-                <p>
-                    Роль: {{ member.role }}
-                </p>
-                <p>
-                    Дата народження: {{ member.birthday }}
-                </p>
-                <p>{{ member.description }}</p>
-            </div>
-        </md-content>
-    </md-card-content>
-</md-card>
+    <div class="text-member">
+      <p>
+        <span class="md-subhead link"
+              ng-click="go('command', member.command.id)">
+          Команда: {{ member.command.title }}
+        </span>
+      </p>
+
+      <p>Роль: {{ member.role }}</p>
+
+      <p>Дата народження: {{ member.birthday }}</p>
+
+      <p>{{ member.description }}</p>
+    </div>
+  </md-content>
+</md-whiteframe>
